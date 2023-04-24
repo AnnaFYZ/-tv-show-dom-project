@@ -18,7 +18,10 @@ function setup() {
   const allEpisodes = getAllEpisodes();
   const oneEpisode = getOneEpisode();
   // makePageForEpisodes(allEpisodes);
-  makeDivForEpisode(oneEpisode);
+  // makeDivForEpisode(oneEpisode);
+  allEpisodes.forEach(element => {
+    makeDivForEpisode(element);
+  });
 }
 
 function makePageForEpisodes(episodeList) {
@@ -34,8 +37,8 @@ function makeDivForEpisode (episode) {
   const divContainer = document.createElement("div");
   divContainer.className = "episodeContainer";
 
-  let title = document.createElement("h5");
-  let episodeCode = `${episode.season}${episode.number}`;
+  let title = document.createElement("h3");
+  let episodeCode = `S${(String(episode.season).padStart(2,'0'))}E${String(episode.number).padStart(2,'0')}`;
   title.innerText = `${episode.name} - ${episodeCode}`;
   divContainer.appendChild(title);
 

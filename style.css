@@ -1,6 +1,13 @@
-#root {
-  color: red;
+body {
+ 
+  background-color:antiquewhite;
 }
+
+#root {
+  /* color: red; */
+  
+}
+
 footer {
   position: fixed;
   bottom: 1rem;
@@ -9,9 +16,30 @@ footer {
   align-self: center;
   font-size: large;
   font-weight: 400;
+  background-color: beige;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 .episodeContainer {
   display:flex;
   flex-direction: column;
+  max-width: 250px;
+  margin: 10px;
+  background-color: beige;
+  padding: 2rem;
+  border-radius: 5%;
+}
+
+img {
+  align-self: center;
+}
+
+#episodsHolder {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+p {
+  text-align: justify;
 }

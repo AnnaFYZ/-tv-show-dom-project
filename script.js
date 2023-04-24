@@ -14,10 +14,8 @@
 
 
 //You can edit ALL of the code here
-const allEpisodes = [];
-
 function setup() {
-  allEpisodes = getAllEpisodes();
+  const allEpisodes = getAllEpisodes();
   const oneEpisode = getOneEpisode();
   allEpisodes.forEach(element => {makeDivForEpisode(element);
   });

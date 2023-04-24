@@ -43,3 +43,13 @@ img {
 p {
   text-align: justify;
 }
+
+input[class="form-control"] + label {
+  font-size: 1.2em;
+}
+
+.form-control {
+  margin: 15px;
+  height: 2em;
+  min-width: 250px;
+}

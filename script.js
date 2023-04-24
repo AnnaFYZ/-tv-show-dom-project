@@ -14,24 +14,25 @@
 
 
 //You can edit ALL of the code here
+const allEpisodes = [];
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
+  allEpisodes = getAllEpisodes();
   const oneEpisode = getOneEpisode();
-  // makePageForEpisodes(allEpisodes);
-  // makeDivForEpisode(oneEpisode);
-  allEpisodes.forEach(element => {
-    makeDivForEpisode(element);
+  allEpisodes.forEach(element => {makeDivForEpisode(element);
   });
 }
 
-function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
-  rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-}
+// function makePageForEpisodes(episodeList) {
+//   const rootElem = document.getElementById("root");
+//   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+// }
 
 window.onload = setup;
 
 const episodesDiv = document.querySelector("#episodsHolder");
+
+// function for displaying all episodes
 
 function makeDivForEpisode (episode) {
   const divContainer = document.createElement("div");
@@ -52,4 +53,10 @@ function makeDivForEpisode (episode) {
 
   episodesDiv.appendChild(divContainer);
 
+}
+
+document.querySelector("#search-input").addEventListener("input", searchText);
+
+function searchText(){
+  const searchInput = document.querySelector("#search-input").value.toLowerCase();
 }

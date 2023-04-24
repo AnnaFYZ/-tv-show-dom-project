@@ -1,3 +1,17 @@
 #root {
   color: red;
 }
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 40%;
+  text-align: center;
+  align-self: center;
+  font-size: large;
+  font-weight: 400;
+}
+
+.episodeContainer {
+  display:flex;
+  flex-direction: column;
+}

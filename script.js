@@ -14,8 +14,10 @@
 
 
 //You can edit ALL of the code here
+const allEpisodes = getAllEpisodes();
+
 function setup() {
-  const allEpisodes = getAllEpisodes();
+  
   const oneEpisode = getOneEpisode();
   allEpisodes.forEach(element => {makeDivForEpisode(element);
   });
@@ -57,4 +59,12 @@ document.querySelector("#search-input").addEventListener("input", searchText);
 
 function searchText(){
   const searchInput = document.querySelector("#search-input").value.toLowerCase();
+  const filteredEpisodes = allEpisodes.filter(episode => {
+      if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
+        return episode
+      }
+  })
+  episodesDiv.innerHTML = "";
+  document.querySelector("#quantity").innerText = filteredEpisodes.length;
+  filteredEpisodes.forEach(episode => makeDivForEpisode(episode));
 }

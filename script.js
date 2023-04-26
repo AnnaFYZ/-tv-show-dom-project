@@ -1,19 +1,4 @@
-// 
-// All episodes must be shown
-// For each episode, AT LEAST following must be displayed:
-// the episode's name
-// the season number
-// the episode number
-// the episode's medium-sized image
-// the episode's summary text
-// You should combine season number and episode number into an episode code:
-// Each part should be zero-padded to two digits.
-// Example: S02E07 would be the code for the 7th episode of the 2nd season. S2E7 would be incorrect.
-// Your page should state somewhere that the data has (originally) come from TVMaze.com, and link back to that site (or the specific episode on that site). See tvmaze.com/api#licensing.
-// 
 
-
-//You can edit ALL of the code here
 const allEpisodes = getAllEpisodes();
 
 function setup() {
@@ -55,6 +40,7 @@ function makeDivForEpisode (episode) {
 
 }
 
+// search input
 document.querySelector("#search-input").addEventListener("input", searchText);
 
 function searchText(){
@@ -68,3 +54,29 @@ function searchText(){
   document.querySelector("#quantity").innerText = filteredEpisodes.length;
   filteredEpisodes.forEach(episode => makeDivForEpisode(episode));
 }
+
+// select input option
+function getInputList (originalList) {
+    const selectList = [];
+
+    for (let i=0; i < originalList.length; i++){
+      let listItem = {};
+      listItem.name = originalList[i].name;
+      listItem.episodeCode = `S${String(originalList[i].season).padStart(2, "0")}E${String(originalList[i].number).padStart(2, "0")}`;
+      selectList.push(listItem);
+    }
+    return selectList;
+}
+
+const listOfOptions = getInputList(allEpisodes);
+
+listOfOptions.forEach(item => {
+  let optionValue = document.createElement("option");
+  optionValue.innerText = `${item.episodeCode} - ${item.name}`;
+
+  document.querySelector("#episode-selector").appendChild(optionValue);
+})
+// 
+// 2.get input selected value
+// 3.match the input value with the name of the episode (indexOf, some, find ....), display this episode
+// 4. clear the select input and get all episodes back

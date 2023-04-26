@@ -76,6 +76,19 @@ listOfOptions.forEach(item => {
 
   document.querySelector("#episode-selector").appendChild(optionValue);
 })
+
+document.querySelector("#episode-selector").addEventListener("change", (event) => {
+  let inputValue = event.target.value.slice(9);
+  let episodeToShow = allEpisodes.find(item => item.name === inputValue);
+  if (episodeToShow === undefined) {
+    setup();
+  } else {
+    episodesDiv.innerHTML = "";
+    document.querySelector("#quantity").innerText = 1;
+    makeDivForEpisode(episodeToShow);
+  }
+  
+});
 // 
 // 2.get input selected value
 // 3.match the input value with the name of the episode (indexOf, some, find ....), display this episode

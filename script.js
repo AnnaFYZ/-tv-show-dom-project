@@ -1,19 +1,27 @@
+function getData () {
+  return fetch("https://api.tvmaze.com/shows/82/episodes")
+  .then(async (response) => await response.json())
+  .then(data => data).catch(error => console.log(error))
+}
+// fetch("https://api.tvmaze.com/shows/82/episodes")
+//   .then(async (response) => await response.json())
+//   .then(data => getData(data))
+//   .catch(error => console.log(error))
 
-const allEpisodes = getAllEpisodes();
 
-function setup() {
-  
-  const oneEpisode = getOneEpisode();
-  allEpisodes.forEach(element => {makeDivForEpisode(element);
-  });
+// const allEpisodes = getAllEpisodes();
+// const allGotEpisodes = getData();
+const allEpisodes =[];
+getData().then(episode => {
+      episode.forEach(element => allEpisodes.push(element));
+    })
+
+  function setup() {
+    allEpisodes.forEach(element => makeDivForEpisode(element));
+  // const oneEpisode = getOneEpisode();
 }
 
-// function makePageForEpisodes(episodeList) {
-//   const rootElem = document.getElementById("root");
-//   rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-// }
-
-window.onload = setup;
+window.onload = setTimeout(setup, 1000);
 
 const episodesDiv = document.querySelector("#episodsHolder");
 
@@ -68,15 +76,19 @@ function getInputList (originalList) {
     return selectList;
 }
 
-const listOfOptions = getInputList(allEpisodes);
-
-listOfOptions.forEach(item => {
+function optionList (){
+  const listOfOptions = getInputList(allEpisodes);
+  listOfOptions.forEach(item => {
   let optionValue = document.createElement("option");
   optionValue.innerText = `${item.episodeCode} - ${item.name}`;
 
   document.querySelector("#episode-selector").appendChild(optionValue);
 })
+}
 
+setTimeout(optionList, 2000);
+
+// show chosen episode
 document.querySelector("#episode-selector").addEventListener("change", (event) => {
   let inputValue = event.target.value.slice(9);
   let episodeToShow = allEpisodes.find(item => item.name === inputValue);

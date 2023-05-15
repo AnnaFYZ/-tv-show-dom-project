@@ -6,6 +6,7 @@
     <title>TV Show Project | AnnaFYZ</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    
   </head>
 
   <body>
@@ -14,6 +15,9 @@
         
       </div>
       <div id="searchBar">
+        <select id="show-selector" class="form-control">
+          <option>Select Show</option>
+        </select>
         <select id="episode-selector" class="form-control">
           <option>Select Episode</option>
         </select>
@@ -29,9 +33,10 @@
     
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
-
+    <script src="/shows.js"></script>
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
+    
   </body>
   <footer>
     Original source is <a href="https://tvmaze.com/">TVMaze.com</a>

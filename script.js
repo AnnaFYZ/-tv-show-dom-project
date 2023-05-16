@@ -5,12 +5,7 @@ function getAllShows() {
   return fetch("https://api.tvmaze.com/shows")
     .then((response) => response.json())
     .then((data) => {
-      let select = document.querySelector("#show-selector");
-      console.log(data);
-      data.forEach(({name, id}) => {
-        let option = document.createElement("option");
-        option.innerText = name;
-        select.appendChild(option);
+        data.forEach(({name, id}) => {
         availableShows.push({name, id});
       });
     })
@@ -25,23 +20,39 @@ function getData() {
     .catch((error) => console.log(error));
 }
 
-const allEpisodes = [];
-getData().then((episode) => {
+let allEpisodes = [];
+getData(showIdNumber).then((episode) => {
   episode.forEach((element) => allEpisodes.push(element));
 });
 
+getAllShows();
+console.log(availableShows);
+
+function createShowList () {
+  let showList = [];
+  availableShows.forEach(show => showList.push(show.name));
+  console.log(showList);
+  let select = document.querySelector("#show-selector");
+  showList.sort().forEach(show => {
+    let option = document.createElement("option");
+    option.innerText = show;
+    select.appendChild(option);
+  })
+}
+setTimeout(createShowList, 300);
+
 function setup() {
-  allEpisodes.forEach((element) => makeDivForEpisode(element));
-  getAllShows();
-  // const oneEpisode = getOneEpisode();
+    allEpisodes.forEach((element) => makeDivForEpisode(element));
+    document.querySelector("#total").innerText = allEpisodes.length;
+    document.querySelector("#quantity").innerText = allEpisodes.length;
+   // const oneEpisode = getOneEpisode();
 }
 
-window.onload = setTimeout(setup, 1000);
+window.onload = setTimeout(setup, 500);
 
 const episodesDiv = document.querySelector("#episodsHolder");
 
 // function for displaying all episodes
-
 function makeDivForEpisode(episode) {
   const divContainer = document.createElement("div");
   divContainer.className = "episodeContainer";
@@ -102,6 +113,9 @@ function getInputList(originalList) {
 
 function optionList() {
   const listOfOptions = getInputList(allEpisodes);
+  let firstOption = document.createElement("option");
+  firstOption.innerText = "Select Episode";
+  document.querySelector("#episode-selector").appendChild(firstOption);
   listOfOptions.forEach((item) => {
     let optionValue = document.createElement("option");
     optionValue.innerText = `${item.episodeCode} - ${item.name}`;
@@ -110,7 +124,7 @@ function optionList() {
   });
 }
 
-setTimeout(optionList, 2000);
+setTimeout(optionList, 1000);
 
 // show chosen episode
 document
@@ -134,11 +148,13 @@ document.querySelector("#show-selector")
 .addEventListener("change", (event) => {
   let chosenShow = availableShows.filter(show => show.name === event.target.value);
   showIdNumber = chosenShow[0].id;
-  console.log(getData());
-  
-  
+  allEpisodes = [];
+  getData().then((episode) => {
+  episode.forEach((element) => allEpisodes.push(element))});
+
+  episodesDiv.innerHTML = "";
+  setTimeout(setup, 500);  
+  document.querySelector("#episode-selector").innerHTML = "";
+  setTimeout(optionList, 1000);
 })
-//
-// 2.get input selected value
-// 3.match the input value with the name of the episode (indexOf, some, find ....), display this episode
-// 4. clear the select input and get all episodes back
+

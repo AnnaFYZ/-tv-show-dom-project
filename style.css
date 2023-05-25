@@ -4,8 +4,8 @@ body {
 }
 
 #root {
-  /* color: red; */
-  
+  /* visibility: collapse;
+   */
 }
 
 footer {
@@ -44,13 +44,35 @@ p {
   text-align: justify;
 }
 
-input[class="form-control"] + label {
-  font-size: 1.2em;
+label {
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.form-control {
+input, select {
   margin: 15px;
   height: 2em;
   min-width: 250px;
-  
+  font-size: 14px;
+  padding: 3px;
+}
+
+select {
+  height: 2.8em;
+}
+
+/*page0 elements*/
+
+#page0 {
+  visibility: visible;
+}
+
+.showCartContainer {
+  display:flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 10px;
+  background-color: beige;
+  padding: 2rem;
+  border-radius: 5%;
 }

@@ -53,6 +53,32 @@ function getOneShow() {
   };
 }
 
+let showIdNumber = 82;
+const availableShows = [];
+
+getAllShows().then((show) =>
+  show.forEach(({ name, id }) => {
+    availableShows.push({ name, id });
+  })
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // function getAllShows() {
 //   return [
 //     {
@@ -16423,17 +16449,19 @@ function getOneShow() {
 
 // }
 
-function getAllShows(){
-  return fetch("https://api.tvmaze.com/shows")
-  .then(response => response.json())
-  .then(data => {
+async function getAllShows(){
+  try {
+    let response = await fetch("https://api.tvmaze.com/shows");
+    let data = await response.json();
     let select = document.querySelector("#show-selector");
     console.log(data);
-      data.forEach(element => {
-        let option = document.createElement("option");
-        option.innerText = element.name;
-        select.appendChild(option);
-      })
-    })
-  .catch(error => console.log(error));
+      // data.forEach(element => {
+      //   let option = document.createElement("option");
+      //   option.innerText = element.name;
+      //   select.appendChild(option);
+      // })
+      return data;
+  } catch {
+    (error => console.log(error));
+}
 }

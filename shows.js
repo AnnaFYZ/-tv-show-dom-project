@@ -56,6 +56,8 @@ function getOneShow() {
 let showIdNumber = 82;
 const availableShows = [];
 
+const showContainer = document.querySelector("#showCardContainer");
+
 getAllShows().then((show) =>
   show.forEach(({ name, id, runtime, genres, image, status, summary, rating }) => {
     availableShows.push({ name, id, runtime, genres, image, status, summary, rating });
@@ -79,40 +81,75 @@ getAllShows().then((show) =>
 // "<p><b>Under the Dome</b> is the story of a small town that is suddenly and inexplicably sealed off from the rest of the world by an enormous transparent dome. The town's inhabitants must deal with surviving the post-apocalyptic conditions while searching for answers about the dome, where it came from and if and when it will go away.</p>"
 
 function createShowCart (show) {
-  let showDiv = document.createElement("div");
-  showDiv.className = "show-cart-container";
-  let showTitle = document.createComment("h2");
-  showTitle.innerText = show.name;
-  showDiv.appendChild(showTitle);
-
+   
   let showCart = document.createElement("div");
+  showCart.id ="showCart";
+
+  //adding elements into container for a show
+  //image
   let showPic = document.createElement("img");
   showPic.src = show.image.medium;
   showCart.appendChild(showPic);
-
+  //title and description
+  let showText = document.createElement("div");
+  showText.id = "showText";
+  let showTitle = document.createElement("h2");
+  showTitle.innerText = show.name;
+  showText.appendChild(showTitle);
   let showDescription = document.createElement("p");
-  showDescription.innerText = show.summary;
-  showCart.appendChild(showDescription);
-
+  showDescription.innerHTML = show.summary;
+  showText.appendChild(showDescription);
+  showCart.appendChild(showText);
+  //info about the show
   let showInfo = document.createElement("div");
+  showInfo.id = "showInfo";
   showCart.appendChild(showInfo);
   let rated = document.createElement("p");
-  rated.innerText = `Rated: ${show.rating}`;
+  rated.innerHTML = `<b>Rated:</b> ${show.rating.average}`;
   showInfo.appendChild(rated);
   let genres = document.createElement("p");
-  genres.innerText = `Genres: ${show.genres}`;
+  genres.innerHTML = `<b>Genres:</b> ${show.genres}`;
   showInfo.appendChild(genres);
   let status = document.createElement("p");
-  status.innerText = `Status: ${show.status}`;
+  status.innerHTML = `<b>Status:</b> ${show.status}`;
   showInfo.appendChild(status);
   let runtime = document.createElement("p");
-  runtime.innerText = `Runtime: ${show.runtime};`
+  runtime.innerHTML = `<b>Runtime:</b> ${show.runtime}`
   showInfo.appendChild(runtime);
 
-  document.querySelector("#page0").appendChild(showCart);
+  showContainer.appendChild(showCart);
 }
 
+document
+  .querySelector("#showSearchInput")
+  .addEventListener("input", searchShow);
 
+function searchShow() {
+  const searchInput = document
+    .querySelector("#showSearchInput")
+    .value.toLowerCase();
+  const filteredShows = availableShows.filter((show) => {
+    if (
+      show.name.toLowerCase().includes(searchInput) ||
+      show.summary.toLowerCase().includes(searchInput) ||
+      show.genres.toLowerCase().includes(searchInput)
+    ) {
+      return show;
+    }
+  });
+  showContainer.innerHTML = "";
+  document.querySelector("#showsFound").innerText = filteredShows.length;
+  filteredShows.forEach((show) => createShowCart(show));
+
+  //creating dropdown list of found shows
+  let foundShowsList = document.querySelector("#foundShowsList");
+  foundShowsList.innerHTML = "";
+  filteredShows.sort().forEach((show) => {
+    let option = document.createElement("option");
+    option.innerText = show.name;
+    foundShowsList.appendChild(option);
+  });
+}
 
 
 

@@ -76,3 +76,25 @@ select {
   padding: 2rem;
   border-radius: 5%;
 }
+
+#showCart {
+  display: grid;
+  grid-template-columns: 230px auto 300px;
+  column-gap: 10px;
+}
+
+#showText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 50px;
+}
+
+#showInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+  border: 3px solid beige;
+  border-radius: 5px;
+}

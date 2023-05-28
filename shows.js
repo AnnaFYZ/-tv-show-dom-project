@@ -57,10 +57,60 @@ let showIdNumber = 82;
 const availableShows = [];
 
 getAllShows().then((show) =>
-  show.forEach(({ name, id }) => {
-    availableShows.push({ name, id });
+  show.forEach(({ name, id, runtime, genres, image, status, summary, rating }) => {
+    availableShows.push({ name, id, runtime, genres, image, status, summary, rating });
   })
 );
+
+// image
+// : 
+// {medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg', original: 'https://static.tvmaze.com/uploads/images/original_untouched/81/202627.jpg'}
+// rating
+// : 
+// {average: 6.5}
+// runtime
+// : 
+// 60
+// status
+// : 
+// "Ended"
+// summary
+// : 
+// "<p><b>Under the Dome</b> is the story of a small town that is suddenly and inexplicably sealed off from the rest of the world by an enormous transparent dome. The town's inhabitants must deal with surviving the post-apocalyptic conditions while searching for answers about the dome, where it came from and if and when it will go away.</p>"
+
+function createShowCart (show) {
+  let showDiv = document.createElement("div");
+  showDiv.className = "show-cart-container";
+  let showTitle = document.createComment("h2");
+  showTitle.innerText = show.name;
+  showDiv.appendChild(showTitle);
+
+  let showCart = document.createElement("div");
+  let showPic = document.createElement("img");
+  showPic.src = show.image.medium;
+  showCart.appendChild(showPic);
+
+  let showDescription = document.createElement("p");
+  showDescription.innerText = show.summary;
+  showCart.appendChild(showDescription);
+
+  let showInfo = document.createElement("div");
+  showCart.appendChild(showInfo);
+  let rated = document.createElement("p");
+  rated.innerText = `Rated: ${show.rating}`;
+  showInfo.appendChild(rated);
+  let genres = document.createElement("p");
+  genres.innerText = `Genres: ${show.genres}`;
+  showInfo.appendChild(genres);
+  let status = document.createElement("p");
+  status.innerText = `Status: ${show.status}`;
+  showInfo.appendChild(status);
+  let runtime = document.createElement("p");
+  runtime.innerText = `Runtime: ${show.runtime};`
+  showInfo.appendChild(runtime);
+
+  document.querySelector("#page0").appendChild(showCart);
+}
 
 
 

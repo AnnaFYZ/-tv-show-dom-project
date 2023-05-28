@@ -4,8 +4,8 @@ body {
 }
 
 #root {
-  /* visibility: collapse;
-   */
+  visibility: collapse;
+  
 }
 
 footer {
@@ -64,7 +64,7 @@ select {
 /*page0 elements*/
 
 #page0 {
-  visibility: visible;
+  visibility: visible; 
 }
 
 .showCartContainer {

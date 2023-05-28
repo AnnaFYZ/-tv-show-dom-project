@@ -98,3 +98,9 @@ select {
   border: 3px solid beige;
   border-radius: 5px;
 }
+
+h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  
+}

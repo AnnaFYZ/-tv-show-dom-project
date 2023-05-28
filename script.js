@@ -28,11 +28,15 @@ function createShowList() {
 setTimeout(createShowList, 300);
 
 // show chosen show
-document.querySelector("#show-selector").addEventListener("change", (event) => {
+function showChosen (event) {
+  
   let chosenShow = availableShows.filter(
-    (show) => show.name === event.target.value
+    (show) => show.name === event.target.innerHTML ||
+      show.name === event.target.value
   );
+  
   showIdNumber = chosenShow[0].id;
+
   allEpisodes = [];
   getData().then((episode) => {
     episode.forEach((element) => allEpisodes.push(element));
@@ -42,6 +46,22 @@ document.querySelector("#show-selector").addEventListener("change", (event) => {
   setTimeout(rootSetup, 500);
   document.querySelector("#episode-selector").innerHTML = "";
   setTimeout(optionList, 1000);
+}
+document.querySelector("#show-selector").addEventListener("change", (event) => {
+  showChosen(event);
+  // let chosenShow = availableShows.filter(
+  //   (show) => show.name === event.target.value
+  // );
+  // showIdNumber = chosenShow[0].id;
+  // allEpisodes = [];
+  // getData().then((episode) => {
+  //   episode.forEach((element) => allEpisodes.push(element));
+  // });
+
+  // episodesDiv.innerHTML = "";
+  // setTimeout(rootSetup, 500);
+  // document.querySelector("#episode-selector").innerHTML = "";
+  // setTimeout(optionList, 1000);
 });
 
 function setup () {
@@ -49,3 +69,23 @@ function setup () {
   // episodePage.style.visibility = "hidden";
   availableShows.forEach((show) => createShowCart(show));
 }
+
+document
+  .querySelector("#showCardContainer")
+  .addEventListener("click", (event) => {
+    document.querySelector("#page0").style.display = "none";
+    showChosen(event);
+    document.querySelector("#root").style.visibility = "visible";
+  });
+
+document.querySelector("#foundShowsList").addEventListener("click", (event) => {
+  document.querySelector("#page0").style.display = "none";
+  showChosen(event);
+  document.querySelector("#root").style.visibility = "visible";
+});
+
+document.querySelector("#home").addEventListener("click", () => {
+  document.querySelector("#page0").style.display = "";
+  document.querySelector("#root").style.display = "none";
+  
+})

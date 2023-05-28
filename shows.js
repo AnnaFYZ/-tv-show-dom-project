@@ -132,7 +132,7 @@ function searchShow() {
     if (
       show.name.toLowerCase().includes(searchInput) ||
       show.summary.toLowerCase().includes(searchInput) ||
-      show.genres.toLowerCase().includes(searchInput)
+      show.genres.join().toLowerCase().includes(searchInput)
     ) {
       return show;
     }

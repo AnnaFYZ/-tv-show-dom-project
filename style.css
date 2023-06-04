@@ -1,3 +1,134 @@
+body {
+ 
+  background-color: #244c8c;
+  color: #eef754;
+}
+
 #root {
-  color: red;
+  visibility: collapse;
+    
+}
+
+#home {
+  color: #bf54f7;
+}
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 40%;
+  text-align: center;
+  align-self: center;
+  font-size: large;
+  font-weight: 400;
+  background-color: beige;
+  padding: 15px;
+  border-radius: 10px;
+  color: black;
+}
+
+.episodeContainer {
+  display:flex;
+  flex-direction: column;
+  max-width: 250px;
+  margin: 10px;
+  background-color: beige;
+  padding: 2rem;
+  border-radius: 5px;
+  color: black;
+}
+
+img {
+  align-self: center;
+}
+
+#episodsHolder {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+p {
+  text-align: justify;
+  margin-bottom: 0;
+}
+
+.readMoreBtn {
+  margin: 0;
+  border: none;
+  display: flex;
+  width: fit-content;
+  background-color: beige;
+  font-style: italic;
+}
+
+button:hover{
+  font-weight: 800;
+}
+
+.hide {
+  display: none;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+input, select {
+  margin: 15px;
+  height: 2em;
+  min-width: 250px;
+  font-size: 14px;
+  padding: 3px;
+}
+
+select {
+  height: 2.8em;
+}
+
+/*page0 elements*/
+
+#page0 {
+  visibility: visible; 
+}
+
+.showCartContainer {
+  display:flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 10px;
+  background-color: beige;
+  padding: 2rem;
+  border-radius: 5%;
+}
+
+#showCart {
+  display: grid;
+  grid-template-columns: 230px auto 300px;
+  column-gap: 10px;
+  background-color: black;
+  color: antiquewhite;
+  margin: 5px;
+}
+
+#showText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 50px;
+}
+
+#showInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+  border: 3px solid beige;
+  border-radius: 5px;
+}
+
+h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  
 }

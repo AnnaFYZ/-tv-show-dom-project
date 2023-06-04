@@ -1,9 +1,7 @@
-window.onload = setTimeout(setup, 500);
+window.onload = setup();
 
-setTimeout(rootSetup, 500);
-
-
-function createShowList() {
+async function createShowList() {
+  await getAllShows();
   let showList = [];
   availableShows.forEach((show) => showList.push(show.name));
   let select = document.querySelector("#show-selector");
@@ -14,7 +12,7 @@ function createShowList() {
   });
 }
 
-setTimeout(createShowList, 300);
+createShowList();
 
 // show chosen show
 function showChosen (event) {
@@ -32,9 +30,9 @@ function showChosen (event) {
   });
 
   episodesDiv.innerHTML = "";
-  setTimeout(rootSetup, 500);
+  rootSetup();
   document.querySelector("#episode-selector").innerHTML = "";
-  setTimeout(optionList, 1000);
+  optionList();
 }
 document.querySelector("#show-selector").addEventListener("change", (event) => {
   showChosen(event);
@@ -48,12 +46,13 @@ document.querySelector("#show-selector").addEventListener("change", (event) => {
   });
 
   episodesDiv.innerHTML = "";
-  setTimeout(rootSetup, 500);
+  rootSetup();
   document.querySelector("#episode-selector").innerHTML = "";
-  setTimeout(optionList, 1000);
+  optionList();
 });
 
-function setup () {
+async function setup () {
+  await getAllShows();
    availableShows.forEach((show) => createShowCart(show));
    createShowsDropDown(availableShows);
 }
@@ -80,7 +79,8 @@ document.querySelector("#home").addEventListener("click", () => {
   
 })
 
-function getButtons(){
+async function getButtons(){
+  await getData();
   let readMoreBUttons = document.querySelectorAll(".readMoreBtn");
   readMoreBUttons.forEach((button) =>
     button.addEventListener("click", (event) => {

@@ -37,15 +37,16 @@ getData(showIdNumber).then((episode) => {
 });
 
 
-function getData() {
-  return fetch(`https://api.tvmaze.com/shows/${showIdNumber}/episodes`)
-    .then((response) => response.json())
+async function getData() {
+  return await fetch(`https://api.tvmaze.com/shows/${showIdNumber}/episodes`)
+    .then(async (response) => await response.json())
     .then((data) => data)
     .catch((error) => console.log(error));
 }
 
 
-function rootSetup() {
+async function rootSetup() {
+  await getData();
   allEpisodes.forEach((element) => makeDivForEpisode(element));
   document.querySelector("#total").innerText = allEpisodes.length;
   document.querySelector("#quantity").innerText = allEpisodes.length;
@@ -63,13 +64,7 @@ function makeDivForEpisode(episode) {
  ).padStart(2, "0")}`;
   let title = `${episode.name} - ${episodeCode}`;
   createElement("h3", divContainer, title);
-  // let title = document.createElement("h3");
-  // let episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(
-  //   episode.number
-  // ).padStart(2, "0")}`;
-  // title.innerText = `${episode.name} - ${episodeCode}`;
-  // divContainer.appendChild(title);
-
+  
   let avatar = document.createElement("img");
   avatar.setAttribute("src", `${episode.image.medium}`);
   divContainer.appendChild(avatar);
@@ -86,7 +81,7 @@ function makeDivForEpisode(episode) {
     let readMoreBtn = document.createElement("button");
     readMoreBtn.className = "readMoreBtn";
     readMoreBtn.innerText = "Read more...";
-    // readMoreBtn.addEventListener("click", readMore(readMoreBtn));
+    
     description.appendChild(readMoreBtn);
 
   }
@@ -132,7 +127,8 @@ function getInputList(originalList) {
   return selectList;
 }
 
-function optionList() {
+async function optionList() {
+  await getData();
   const listOfOptions = getInputList(allEpisodes);
   let firstOption = document.createElement("option");
   firstOption.innerText = "Select Episode";

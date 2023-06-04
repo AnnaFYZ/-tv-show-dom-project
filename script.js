@@ -49,25 +49,24 @@ function showChosen (event) {
 }
 document.querySelector("#show-selector").addEventListener("change", (event) => {
   showChosen(event);
-  // let chosenShow = availableShows.filter(
-  //   (show) => show.name === event.target.value
-  // );
-  // showIdNumber = chosenShow[0].id;
-  // allEpisodes = [];
-  // getData().then((episode) => {
-  //   episode.forEach((element) => allEpisodes.push(element));
-  // });
+  let chosenShow = availableShows.filter(
+    (show) => show.name === event.target.value
+  );
+  showIdNumber = chosenShow[0].id;
+  allEpisodes = [];
+  getData().then((episode) => {
+    episode.forEach((element) => allEpisodes.push(element));
+  });
 
-  // episodesDiv.innerHTML = "";
-  // setTimeout(rootSetup, 500);
-  // document.querySelector("#episode-selector").innerHTML = "";
-  // setTimeout(optionList, 1000);
+  episodesDiv.innerHTML = "";
+  setTimeout(rootSetup, 500);
+  document.querySelector("#episode-selector").innerHTML = "";
+  setTimeout(optionList, 1000);
 });
 
 function setup () {
-  // let episodePage = document.querySelector("#root");
-  // episodePage.style.visibility = "hidden";
-  availableShows.forEach((show) => createShowCart(show));
+   availableShows.forEach((show) => createShowCart(show));
+   createShowsDropDown(availableShows);
 }
 
 document
@@ -79,9 +78,11 @@ document
   });
 
 document.querySelector("#foundShowsList").addEventListener("click", (event) => {
-  document.querySelector("#page0").style.display = "none";
-  showChosen(event);
-  document.querySelector("#root").style.visibility = "visible";
+  if(event.target.innerHTML !== "" && event.target.value !=="Select show"){
+    document.querySelector("#page0").style.display = "none";
+    showChosen(event);
+    document.querySelector("#root").style.visibility = "visible";
+  }
 });
 
 document.querySelector("#home").addEventListener("click", () => {

@@ -49,6 +49,24 @@ img {
 
 p {
   text-align: justify;
+  margin-bottom: 0;
+}
+
+.readMoreBtn {
+  margin: 0;
+  border: none;
+  display: flex;
+  width: fit-content;
+  background-color: beige;
+  font-style: italic;
+}
+
+button:hover{
+  font-weight: 800;
+}
+
+.hide {
+  display: none;
 }
 
 label {

@@ -2,18 +2,6 @@ window.onload = setTimeout(setup, 500);
 
 setTimeout(rootSetup, 500);
 
-// function getAllShows() {
-//   return fetch("https://api.tvmaze.com/shows")
-//     .then((response) => response.json())
-//     .then((data) => {
-//         data.forEach(({name, id}) => {
-//         availableShows.push({name, id});
-//       });
-//     })
-//     .catch((error) => console.log(error));
-// }
-
-// pull all episodes from the selected show
 
 async function createShowList() {
   let showList = [];
@@ -91,3 +79,22 @@ document.querySelector("#home").addEventListener("click", () => {
   document.querySelector("#root").style.display = "none";
   
 })
+
+function getButtons(){
+  let readMoreBUttons = document.querySelectorAll(".readMoreBtn");
+  readMoreBUttons.forEach((button) =>
+    button.addEventListener("click", (event) => {
+      readMore(event.target);
+    })
+  );
+}
+
+
+function readMore(btn){
+  let post = btn.parentElement;
+  post.querySelector(".dots").classList.toggle("hide");
+  post.querySelector(".more").classList.toggle("hide");
+  btn.innerText == "Read more..."
+    ? (btn.innerText = "Read less")
+    : (btn.innerText = "Read more...");
+}

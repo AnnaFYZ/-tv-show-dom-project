@@ -56,7 +56,6 @@ async function getAllShows() {
   try {
     let response = await fetch("https://api.tvmaze.com/shows");
     let data = await response.json();
-    let select = document.querySelector("#show-selector");
     console.log(data);
     return data;
   } catch {

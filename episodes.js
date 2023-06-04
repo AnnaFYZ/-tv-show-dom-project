@@ -49,6 +49,7 @@ function rootSetup() {
   allEpisodes.forEach((element) => makeDivForEpisode(element));
   document.querySelector("#total").innerText = allEpisodes.length;
   document.querySelector("#quantity").innerText = allEpisodes.length;
+  getButtons();
 }
 
 const episodesDiv = document.querySelector("#episodsHolder");
@@ -58,19 +59,38 @@ function makeDivForEpisode(episode) {
   const divContainer = document.createElement("div");
   divContainer.className = "episodeContainer";
 
-  let title = document.createElement("h3");
-  let episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(
-    episode.number
-  ).padStart(2, "0")}`;
-  title.innerText = `${episode.name} - ${episodeCode}`;
-  divContainer.appendChild(title);
+  let episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(episode.number
+ ).padStart(2, "0")}`;
+  let title = `${episode.name} - ${episodeCode}`;
+  createElement("h3", divContainer, title);
+  // let title = document.createElement("h3");
+  // let episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(
+  //   episode.number
+  // ).padStart(2, "0")}`;
+  // title.innerText = `${episode.name} - ${episodeCode}`;
+  // divContainer.appendChild(title);
 
   let avatar = document.createElement("img");
   avatar.setAttribute("src", `${episode.image.medium}`);
   divContainer.appendChild(avatar);
 
-  let description = document.createElement("p");
-  description.innerHTML = episode.summary;
+  let description = document.createElement("div");
+  
+  if(episode.summary.length < 150){
+    description.innerHTML = episode.summary;
+  } else {
+    let displayText = episode.summary.slice(0, 150);
+    let moreText = episode.summary.slice(150);
+    description.innerHTML = `${displayText}<span class="dots">...</span><span class="hide more">${moreText}</span>`;
+    
+    let readMoreBtn = document.createElement("button");
+    readMoreBtn.className = "readMoreBtn";
+    readMoreBtn.innerText = "Read more...";
+    // readMoreBtn.addEventListener("click", readMore(readMoreBtn));
+    description.appendChild(readMoreBtn);
+
+  }
+  
   divContainer.appendChild(description);
 
   episodesDiv.appendChild(divContainer);

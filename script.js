@@ -3,9 +3,9 @@ window.onload = setTimeout(setup, 500);
 setTimeout(rootSetup, 500);
 
 
-async function createShowList() {
+function createShowList() {
   let showList = [];
-  await availableShows.forEach((show) => showList.push(show.name));
+  availableShows.forEach((show) => showList.push(show.name));
   let select = document.querySelector("#show-selector");
   showList.sort().forEach((show) => {
     let option = document.createElement("option");
@@ -13,8 +13,8 @@ async function createShowList() {
     select.appendChild(option);
   });
 }
-createShowList();
-// setTimeout(createShowList, 300);
+
+setTimeout(createShowList, 300);
 
 // show chosen show
 function showChosen (event) {

@@ -52,6 +52,17 @@ function getOneShow() {
     },
   };
 }
+async function getAllShows() {
+  try {
+    let response = await fetch("https://api.tvmaze.com/shows");
+    let data = await response.json();
+    let select = document.querySelector("#show-selector");
+    console.log(data);
+    return data;
+  } catch {
+    (error) => console.log(error);
+  }
+}
 
 let showIdNumber = 82;
 const availableShows = [];
@@ -16525,19 +16536,3 @@ function searchShow() {
 
 // }
 
-async function getAllShows(){
-  try {
-    let response = await fetch("https://api.tvmaze.com/shows");
-    let data = await response.json();
-    let select = document.querySelector("#show-selector");
-    console.log(data);
-      // data.forEach(element => {
-      //   let option = document.createElement("option");
-      //   option.innerText = element.name;
-      //   select.appendChild(option);
-      // })
-      return data;
-  } catch {
-    (error => console.log(error));
-}
-}

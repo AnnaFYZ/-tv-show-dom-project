@@ -15,9 +15,9 @@ setTimeout(rootSetup, 500);
 
 // pull all episodes from the selected show
 
-function createShowList() {
+async function createShowList() {
   let showList = [];
-  availableShows.forEach((show) => showList.push(show.name));
+  await availableShows.forEach((show) => showList.push(show.name));
   let select = document.querySelector("#show-selector");
   showList.sort().forEach((show) => {
     let option = document.createElement("option");
@@ -25,7 +25,8 @@ function createShowList() {
     select.appendChild(option);
   });
 }
-setTimeout(createShowList, 300);
+createShowList();
+// setTimeout(createShowList, 300);
 
 // show chosen show
 function showChosen (event) {

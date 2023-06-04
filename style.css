@@ -1,11 +1,16 @@
 body {
  
-  background-color:antiquewhite;
+  background-color: #244c8c;
+  color: #eef754;
 }
 
 #root {
   visibility: collapse;
-  
+    
+}
+
+#home {
+  color: #bf54f7;
 }
 
 footer {
@@ -19,6 +24,7 @@ footer {
   background-color: beige;
   padding: 15px;
   border-radius: 10px;
+  color: black;
 }
 
 .episodeContainer {
@@ -28,7 +34,8 @@ footer {
   margin: 10px;
   background-color: beige;
   padding: 2rem;
-  border-radius: 5%;
+  border-radius: 5px;
+  color: black;
 }
 
 img {
@@ -81,6 +88,9 @@ select {
   display: grid;
   grid-template-columns: 230px auto 300px;
   column-gap: 10px;
+  background-color: black;
+  color: antiquewhite;
+  margin: 5px;
 }
 
 #showText {

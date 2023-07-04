@@ -40,6 +40,7 @@ document.querySelector("#show-selector").addEventListener("change", (event) => {
     (show) => show.name === event.target.value
   );
   showIdNumber = chosenShow[0].id;
+  
   allEpisodes = [];
   getData().then((episode) => {
     episode.forEach((element) => allEpisodes.push(element));
@@ -70,6 +71,8 @@ document.querySelector("#foundShowsList").addEventListener("click", (event) => {
     document.querySelector("#page0").style.display = "none";
     showChosen(event);
     document.querySelector("#root").style.visibility = "visible";
+    document.querySelector("#root").style.display = "";
+    
   }
 });
 

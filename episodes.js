@@ -59,6 +59,8 @@ const episodesDiv = document.querySelector("#episodsHolder");
 function makeDivForEpisode(episode) {
   const divContainer = document.createElement("div");
   divContainer.className = "episodeContainer";
+  divContainer.innerHTML = "";
+  
 
   let episodeCode = `S${String(episode.season).padStart(2, "0")}E${String(episode.number
  ).padStart(2, "0")}`;

@@ -158,6 +158,7 @@ document
       episodesDiv.innerHTML = "";
       document.querySelector("#quantity").innerText = 1;
       makeDivForEpisode(episodeToShow);
+      getButtons();
     }
   });
 

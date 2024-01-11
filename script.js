@@ -82,16 +82,22 @@ document.querySelector("#home").addEventListener("click", () => {
   
 })
 
-async function getButtons(){
-  await getData();
+function getButtons(){
+  // await getData();
   let readMoreBUttons = document.querySelectorAll(".readMoreBtn");
-  readMoreBUttons.forEach((button) =>
-    button.addEventListener("click", (event) => {
+  if (readMoreBUttons != 1) {
+    readMoreBUttons.forEach((button) =>
+      button.addEventListener("click", (event) => {
+        readMore(event.target);
+      })
+    );
+  } else {
+    document.querySelector(".readMoreBtn").addEventListener("click", (event) => {
       readMore(event.target);
     })
-  );
+  }
+  
 }
-
 
 function readMore(btn){
   let post = btn.parentElement;

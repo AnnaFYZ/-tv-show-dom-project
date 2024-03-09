@@ -50,7 +50,7 @@ async function rootSetup() {
   allEpisodes.forEach((element) => makeDivForEpisode(element));
   document.querySelector("#total").innerText = allEpisodes.length;
   document.querySelector("#quantity").innerText = allEpisodes.length;
-  getButtons();
+  //getButtons();
 }
 
 const episodesDiv = document.querySelector("#episodsHolder");

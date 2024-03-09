@@ -33,7 +33,9 @@ function showChosen (event) {
   rootSetup();
   document.querySelector("#episode-selector").innerHTML = "";
   optionList();
+  getButtons();
 }
+
 document.querySelector("#show-selector").addEventListener("change", (event) => {
   showChosen(event);
   let chosenShow = availableShows.filter(
@@ -82,8 +84,8 @@ document.querySelector("#home").addEventListener("click", () => {
   
 })
 
-function getButtons(){
-  // await getData();
+async function getButtons(){
+  await getData();
   let readMoreBUttons = document.querySelectorAll(".readMoreBtn");
   if (readMoreBUttons != 1) {
     readMoreBUttons.forEach((button) =>
